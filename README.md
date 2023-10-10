@@ -14,7 +14,7 @@ My personal solutions for algs4 labs💀
 
 说实话，这个是最搞的。
 
-Windows平台下，最简单的方法如下：
+Windows平台下，最简单的方法如下：(摸索了很久)
 
 [点击这个网址](https://lift.cs.princeton.edu/java/windows/)
 
@@ -25,7 +25,9 @@ Windows平台下，最简单的方法如下：
 * 还有一些配置文件
 
 
-然后运行，它会覆盖classpath还有原先的JAVA path。如果你喜欢挑战自我可以试试手动配置。
+然后运行，它会覆盖classpath还有原先的JAVA path。如果你喜欢挑战自我可以试试手动配置
+
+(安装JDK，添加JAVAPATH，下载algs4.jar，添加到classpath，再安装git，再把algs4.jar添加到git的path，然后用IDE导入algs4.jar包)。不推荐💀
 
 上述内容是可选的，安装了Git或者IntelliJ可以不用勾选。
 
