@@ -15,21 +15,30 @@ public class BruteCollinearPoints {
         if(points == null){
             throw new IllegalArgumentException("Argument Illegal: points are null!");
         }
+
+        Point[] clonePoints = new Point[points.length]; // 本来可以原地操作的，但是测试样例有检查points是否改变，那就只能辅助数组了
+
         for(int i=0;i<points.length;i++){
             if(points[i] == null){
                 throw new IllegalArgumentException("Argument Illegal: a point is null!");
             }
             for(int j=i+1;j<points.length;j++){
+                if(points[j] == null){
+                    // 这里非常小心，如果输入中有null，i点检查了，但是j没有检查，
+                    // 然后直接调用下面的compareTo的话会导致抛出错误的异常(NullPointer)，从而某些样例不能通过
+                    throw new IllegalArgumentException("Argument Illegal: a point is null!");
+                }
                 if(points[i].compareTo(points[j]) == 0){
-                    throw new IllegalArgumentException("Argument Illegal: repeated points!");
+                    throw new IllegalArgumentException("Argument Illegal: duplicate points!");
                 }
             }
+            clonePoints[i] = points[i];
         }
 
         first = null;
         nums = 0;
 
-        Arrays.sort(points); // 按照 compareTo()的规则排序: 先y后x
+        Arrays.sort(clonePoints); // 按照 compareTo()的规则排序: 先y后x
 
 //        System.out.println("After Sort: ");
 //        for(int i=0;i<points.length;i++){
@@ -37,21 +46,21 @@ public class BruteCollinearPoints {
 //        }
 
         // really sucks loop
-        for(int p=0;p < points.length-3;p++){
-            for(int q=p+1;q < points.length-2;q++){
-                for(int r=q+1;r < points.length-1;r++){
-                    for(int s=r+1;s < points.length;s++){
+        for(int p=0;p < clonePoints.length-3;p++){
+            for(int q=p+1;q < clonePoints.length-2;q++){
+                for(int r=q+1;r < clonePoints.length-1;r++){
+                    for(int s=r+1;s < clonePoints.length;s++){
 
-                        double slope1 = points[p].slopeTo(points[q]);
-                        double slope2 = points[q].slopeTo(points[r]);
-                        double slope3 = points[r].slopeTo(points[s]);
+                        double slope1 = clonePoints[p].slopeTo(clonePoints[q]);
+                        double slope2 = clonePoints[q].slopeTo(clonePoints[r]);
+                        double slope3 = clonePoints[r].slopeTo(clonePoints[s]);
 
                         if( slope1 == slope2 && slope2 == slope3 ){
                             nums++;
 
                             // 头插法
                             Node tmpNode = new Node();
-                            tmpNode.value = new LineSegment(points[p],points[s]);
+                            tmpNode.value = new LineSegment(clonePoints[p],clonePoints[s]);
                             tmpNode.next = first;
                             first = tmpNode;
                         }
@@ -65,42 +74,11 @@ public class BruteCollinearPoints {
     }
     public LineSegment[] segments(){// the line segments
         LineSegment[] LineSeg = new LineSegment[nums];
+        Node p = first; // 测试样例有重复调用segments()必须保证每次调用返回值一样
         for(int i=0;i<nums;i++){
-            LineSeg[i] = first.value;
-            first = first.next;
+            LineSeg[i] = p.value;
+            p = p.next;
         }
         return LineSeg;
     }
-
-
-    // just for test;
-//    public static void main(String[] args) {
-//
-//        // read the n points from a file
-//        In in = new In(args[0]);
-//        int n = in.readInt();
-//        Point[] points = new Point[n];
-//        for (int i = 0; i < n; i++) {
-//            int x = in.readInt();
-//            int y = in.readInt();
-//            points[i] = new Point(x, y);
-//        }
-//
-//        // draw the points
-//        StdDraw.enableDoubleBuffering();
-//        StdDraw.setXscale(0, 32768);
-//        StdDraw.setYscale(0, 32768);
-//        for (Point p : points) {
-//            p.draw();
-//        }
-//        StdDraw.show();
-//
-//        // print and draw the line segments
-//        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-//        for (LineSegment segment : collinear.segments()) {
-//            StdOut.println(segment);
-//            segment.draw();
-//        }
-//        StdDraw.show();
-//    }
 }

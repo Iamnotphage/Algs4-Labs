@@ -24,24 +24,32 @@ public class FastCollinearPoints {
         private Node next;
     }
 
-    //private Stack<LineSegment> StackLineSeg; // 最开始用的栈，但是有测试需要多次调用segments()检查是否结果一致
-    private Node first; // 自定义链表了，草。Stack不会超时，但是只有88分，ArrayList和LinkedList都超时
+    //private Stack<LineSegment> StackLineSeg; // 最开始用的栈，但是有测试需要多次调用segments()检查是否结果一致,栈弹出之后就没了，要么再来一个辅助栈存内容，要么直接链表
+    private Node first; // 自定义链表了，草。Stack不会超时，但是只有88分(需要保证stack不变)，ArrayList和LinkedList都超时
     private int nums;
     public FastCollinearPoints(Point[] points){// finds all line segments containing 4 or more points
         // check argument
         if(points == null){
             throw new IllegalArgumentException("Argument Illegal: points are null!");
         }
+
+        Point[] clonePoints = new Point[points.length]; // 本来可以原地操作的，但是测试样例有检查points是否改变，那就只能辅助数组了
+
         for(int i=0;i<points.length;i++){
             if(points[i] == null){
                 throw new IllegalArgumentException("Argument Illegal: a point is null!");
             }
             for(int j=i+1;j<points.length;j++){
+                if(points[j] == null){
+                    // 这里非常小心，如果输入中有null，i点检查了，但是j没有检查，
+                    // 然后直接调用下面的compareTo的话会导致抛出错误的异常(NullPointer)，从而某些样例不能通过
+                    throw new IllegalArgumentException("Argument Illegal: a point is null!");
+                }
                 if(points[i].compareTo(points[j]) == 0){
-                    throw new IllegalArgumentException("Argument Illegal: repeated points!");
-                    // 尼玛，测试平台说我没抛出异常，本地机器明明可以
+                    throw new IllegalArgumentException("Argument Illegal: duplicate points!");
                 }
             }
+            clonePoints[i] = points[i];
         }
 
         first = null;
@@ -50,24 +58,24 @@ public class FastCollinearPoints {
         // 让点集都按照y坐标排序
         // 这样才能使后续按斜率排序时，先遍历的点是y坐标较小的点
         // 因为上述代码对重复点的可能性抛出了异常，所以排序的稳定性不用考虑
-        Arrays.sort(points);
+        Arrays.sort(clonePoints);
 
         // 思路：遍历n个点，每次第i个点为原点，给i点和剩下n-1个点根据斜率排序
         // 然后排序之后，查重，找到连续4个及以上的点在同一直线上
 
         // N * (N + NlogN + ?)
-        for(int i = 0; i < points.length; i++){
+        for(int i = 0; i < clonePoints.length; i++){
             // points[i] 就是 op
             // op launch
-            Point[] tmpPoints = new Point[points.length - 1]; // tmpPoints需要根据斜率排序
+            Point[] tmpPoints = new Point[clonePoints.length - 1]; // tmpPoints需要根据斜率排序
             int tmpPointsLength = 0;
 
             // 给tmpPoints赋值
-            for(int j = 0; j < points.length; j++){
+            for(int j = 0; j < clonePoints.length; j++){
                 if(j == i){
                     continue;
                 }
-               tmpPoints[tmpPointsLength] = points[j];
+               tmpPoints[tmpPointsLength] = clonePoints[j];
                tmpPointsLength++;
             }
 
@@ -76,7 +84,7 @@ public class FastCollinearPoints {
             // 再根据斜率来排序点集时，相同斜率的点不能顺序搞乱，这样可能导致 p->q->r->s->t 乱序
             // 查阅资料显示 使用比较器的排序用的是 MergeSort 所以这里应该能保证稳定性
             // 'This sort is guaranteed to be stable: equal elements will not be reordered as a result of the sort.'
-            Arrays.sort(tmpPoints, points[i].slopeOrder());
+            Arrays.sort(tmpPoints, clonePoints[i].slopeOrder());
 
 //            for(int k=0;k<tmpPointsLength;k++){
 //                StdOut.println("in loop"+i+" tmpPoints: "+tmpPoints[k]);
@@ -92,20 +100,20 @@ public class FastCollinearPoints {
             int count = 0; // 同一线段上的点数 因为原点默认是线段上的
 
             for(int j=0;j<tmpPointsLength-1;j++){
-                if(points[i].slopeTo(tmpPoints[j]) == points[i].slopeTo(tmpPoints[j+1])){
+                if(clonePoints[i].slopeTo(tmpPoints[j]) == clonePoints[i].slopeTo(tmpPoints[j+1])){
                     // j和j+1对op的斜率一样
                     // 处理j和j+1点，谁是起点，谁是终点
 
                     // 最开始，startPoint == null
                     if(startPoint == null){
-                        if(points[i].compareTo(tmpPoints[j]) > 0){
+                        if(clonePoints[i].compareTo(tmpPoints[j]) > 0){
                             // points[i] > tmpPoints[j] 表明 j点y坐标更小
-                            endPoint = points[i];
+                            endPoint = clonePoints[i];
                             startPoint = tmpPoints[j];
                         }else{
                             // 否则 i点y坐标更小 （不存在相同点）
                             endPoint = tmpPoints[j];
-                            startPoint = points[i];
+                            startPoint = clonePoints[i];
                         }
                     }
 
@@ -128,7 +136,7 @@ public class FastCollinearPoints {
                         // 这里需要非常小心，如果是线段中间的某个点作为op
                         // 那么该线段的startPoint必然在其他循环中被计算过，
                         // 所以一定要保证startPoint和op是同一个点，才能去掉重复线段
-                        if(count >= 2 && points[i].compareTo(startPoint)==0){
+                        if(count >= 2 && clonePoints[i].compareTo(startPoint)==0){
                             // 头插法
                             Node tmpNode = new Node();
                             tmpNode.value = new LineSegment(startPoint,endPoint);
@@ -144,7 +152,7 @@ public class FastCollinearPoints {
 
                 }else{
                     // j和j+1对op的斜率不一样
-                    if(count >= 2 && points[i].compareTo(startPoint)==0){
+                    if(count >= 2 && clonePoints[i].compareTo(startPoint)==0){
                         // 头插法
                         Node tmpNode = new Node();
                         tmpNode.value = new LineSegment(startPoint,endPoint);
@@ -165,9 +173,10 @@ public class FastCollinearPoints {
     }
     public LineSegment[] segments(){// the line segments
         LineSegment[] LineSeg = new LineSegment[nums];
+        Node p = first; // 测试样例有重复调用segments()必须保证每次调用返回值一样
         for(int i=0;i<nums;i++){
-            LineSeg[i] = first.value;
-            first = first.next;
+            LineSeg[i] = p.value;
+            p = p.next;
         }
         return LineSeg;
     }
