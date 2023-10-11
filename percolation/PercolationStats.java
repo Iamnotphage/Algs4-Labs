@@ -26,32 +26,39 @@ public class PercolationStats {
         X = new double[trials];
 
         for(int i=0;i<trials;i++){
-            X[i] = 0.0;
+            Percolation pl = new Percolation(n);
+            while(!pl.percolates()){
+                int randomRow = StdRandom.uniformInt(1, n+1); // [a,b)
+                int randomCol = StdRandom.uniformInt(1, n+1);
+                pl.open(randomRow, randomCol);
+            }
+            X[i] = (double)pl.numberOfOpenSites()/(n*n);
         }
+
+        xBar = StdStats.mean(X);
+        S = StdStats.stddev(X);
+        confidenceLow = (xBar - 1.96*S/Math.sqrt(T));
+        confidenceHigh = (xBar + 1.96*S/Math.sqrt(T));
     }
 
     // sample mean of percolation threshold
     public double mean(){
-        xBar = StdStats.mean(X);
         return xBar;
     }
 
 
     // sample standard deviation of percolation threshold
     public double stddev(){
-        S = StdStats.stddev(X);
         return S;
     }
 
     // low endpoint of 95% confidence interval
     public double confidenceLo(){
-        confidenceLow = (xBar - 1.96*S/Math.sqrt(T));
         return confidenceLow;
     }
 
     // high endpoint of 95% confidence interval
     public double confidenceHi(){
-        confidenceHigh = (xBar + 1.96*S/Math.sqrt(T));
         return confidenceHigh;
     }
 
@@ -61,23 +68,15 @@ public class PercolationStats {
         Integer trials = Integer.valueOf(args[1]);
 
         PercolationStats plstats = new PercolationStats(n,trials);
-        for(int i=0;i<trials;i++){
-            Percolation pl = new Percolation(n);
-            while(!pl.percolates()){
-                int randomRow = StdRandom.uniformInt(1, n+1); // [a,b)
-                int randomCol = StdRandom.uniformInt(1, n+1);
-                pl.open(randomRow, randomCol);
-            }
-            plstats.X[i] = (double)pl.numberOfOpenSites()/(n*n);
-        }
 
         System.out.println("mean                    = " + plstats.mean());
         System.out.println("stddev                  = " + plstats.stddev());
         System.out.println("95% confidence interval = [" + plstats.confidenceLo() + "," + plstats.confidenceHi() + "]");
 
         return;
-        // start: 2023-9-23 10:30
-        // end:   2023-9-23 15:50
+        // start:  2023-9-23 10:30
+        // end:    2023-9-23 15:50
+        // modify: 2023-10-11 19:33
     }
 
 }
