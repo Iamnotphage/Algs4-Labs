@@ -17,7 +17,7 @@ My personal solutions for algs4 labs💀
 
 Coursera官网：https://www.coursera.org/
 
-部分我觉得有意思的课后练习题：[Click Here](/interestingAssignments/)
+部分我觉得有意思的课后练习题：[Click Here](/interestingAssignments/assignments.md)
 
 # hello
 
