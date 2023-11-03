@@ -17,6 +17,8 @@ My personal solutions for algs4 labs💀
 
 Coursera官网：https://www.coursera.org/
 
+部分我觉得有意思的课后练习题：[Click Here](/interestingAssignments/)
+
 # hello
 
 主要配置环境，测试algs4.jar是否能正常编译运行
