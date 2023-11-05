@@ -8,6 +8,7 @@ My personal solutions for algs4 labs💀
 - [queues](#queues)
 - [collinear](#collinear)
 - [8puzzle](#8puzzle)
+- [kdtree](#kdtree)
 
 # Websites
 
@@ -127,3 +128,9 @@ Backwash现象主要围绕isFull()的判断，如果按照幻灯片里面的两�
 `To solve the puzzle from a given search node on the priority queue, the total number of moves we need to make (including those already made) is at least its priority, using either the Hamming or Manhattan priority function. Why? Consequently, when the goal board is dequeued, we have discovered not only a sequence of moves from the initial board to the goal board, but one that makes the fewest moves. (Challenge for the mathematically inclined: prove this fact.)`
 
 `Proof: 假设优先队列的最小结点是第N个结点(distance, move, priority)，它的邻居只可能有两种情况（从距离上看）：比第N个结点距离大1 或 比第N个结点距离小1。而作为邻居结点，它们的move只会递增1。当删除第N个结点时，优先队列的最小结点将会是第N个结点邻居的距离较小的那个 (distance-1, move+1, priority) 对于任意N成立，所以最终distance=0时，move=priority，Q.E.D.`
+
+# kdtree
+
+* /100
+  
+K-Dimension Tree
