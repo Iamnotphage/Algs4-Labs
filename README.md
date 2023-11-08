@@ -56,6 +56,7 @@ Windows平台下，最简单的方法如下：(摸索了很久)
 这两个命令，就证明成功
 
 # percolation
+![logo_1](img/logo_1.png)
 
 * 100/100 
 
@@ -81,6 +82,7 @@ Backwash现象主要围绕isFull()的判断，如果按照幻灯片里面的两�
 所以最好是弄两个uf对象，一个包含两个虚拟结点，一个只包含一个top的虚拟结点。
 
 # queues
+![logo_2](img/logo_2.png)
 
 * 100/100
 
@@ -91,7 +93,7 @@ Backwash现象主要围绕isFull()的判断，如果按照幻灯片里面的两�
 好像没啥大问题。
 
 # collinear
-
+![logo_3](img/logo_3.png)
 * 100/100
 
 ![100/100](img/collinear100.png)
@@ -111,7 +113,7 @@ Backwash现象主要围绕isFull()的判断，如果按照幻灯片里面的两�
 * 样例有多次调用同一个函数，请保证每次调用返回结果一样(eg.不能直接把栈弹光，后续再调用结果就不一样了)
 
 # 8puzzle
-
+![logo_4](img/logo_4.png)
 * 100/100
 
 ![100/100](img/8puzzle100.png)
@@ -138,7 +140,7 @@ Backwash现象主要围绕isFull()的判断，如果按照幻灯片里面的两�
 `Proof: 假设优先队列的最小结点是第N个结点(distance, move, priority)，它的邻居只可能有两种情况（从距离上看）：比第N个结点距离大1 或 比第N个结点距离小1。而作为邻居结点，它们的move只会递增1。当删除第N个结点时，优先队列的最小结点将会是第N个结点邻居的距离较小的那个 (distance-1, move+1, priority) 对于任意N成立，所以最终distance=0时，move=priority，Q.E.D.`
 
 # kdtree
-
+![logo_5](img/logo_5.png)
 * 100/100
 
 ![100/100](img/kdtree100.png)
