@@ -4,29 +4,29 @@
     "type": "split",
     "children": [
       {
-        "id": "3d0df3c6d52f11bb",
+        "id": "b810e6dec6d580b2",
         "type": "tabs",
         "children": [
           {
-            "id": "b08c6e8d4045fd32",
+            "id": "8176f1bde55cb540",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Seam.md",
                 "mode": "source",
-                "source": false
+                "source": true
               }
             }
           }
         ]
       },
       {
-        "id": "b810e6dec6d580b2",
+        "id": "5b2ede88ce0de03d",
         "type": "tabs",
         "children": [
           {
-            "id": "8176f1bde55cb540",
+            "id": "e66b0ca7ff228a8d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -166,15 +166,18 @@
   },
   "active": "8176f1bde55cb540",
   "lastOpenFiles": [
+    "img.md",
+    "Seam.md",
+    "img/seam100.png",
+    "img/022d42a6c289e9f9cff567b13e0f655.png",
+    "WordNet.md",
+    "README.md",
+    "Queues.md",
     "SeamCarver.java",
     "KdTree.md",
-    "Queues.md",
-    "README.md",
     "Percolation.md",
     "Collinear.md",
     "8puzzle.md.md",
-    "WordNet.md",
-    "Seam.md",
     "img/logo_7.png",
     "img/logo.png",
     "wordnet/WordNet.java",

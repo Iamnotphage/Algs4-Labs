@@ -1,9 +1,22 @@
 # seam
 ![logo_7](img/logo_7.png)
 
-难度飙升。需要非常注意优化问题：
+* 100/100
 
-Tips:
+![100/100](img/seam100.png)
+
+难度飙升。需要非常注意优化问题，真的让最短路径算法直接刻进大脑了：
+
+除了官方的FAQ提示，我这里列一下个人经验：
+
+* 最好不要存picture成员变量，因为会使用多个getRGB()方法（尽管getRGB()方法比get()更快，但是多次调用会在Timing这里丢分）个人使用`int[][] color`来存储RGB值
+* RGB值占4 Bytes，各字节分别是alpha, red, green, blue
+* 行优先访问比列优先访问要快，为什么？详见Cache（据说CSAPP的LAB有提及）
+* 多熟悉最短路径算法：Dijkstra/Bellman-Ford/Topological Order 这个实验用到后者
+
+
+
+Official Tips:
 
 - Don’t use an explicit `EdgeWeightedDigraph`. Instead, execute the topological sort algorithm directly on the pixels.
     
