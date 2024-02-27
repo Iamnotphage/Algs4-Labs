@@ -22,6 +22,9 @@ Coursera官网：https://www.coursera.org/
 
 部分我觉得有意思的课后练习题：[Click Here](/Exercises/assignments.md)
 
+这门课在西电开设，名为算法分析与设计。
+
+2.5学分，本人最终总评96。西电相关资料请看文件夹。
 # hello
 
 ![hello world!](/img/logo.png)

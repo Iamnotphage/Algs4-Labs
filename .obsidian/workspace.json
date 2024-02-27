@@ -4,34 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b810e6dec6d580b2",
+        "id": "d64a6e8ecd8fff82",
         "type": "tabs",
         "children": [
           {
-            "id": "8176f1bde55cb540",
+            "id": "fdec8a036aed03c8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Seam.md",
-                "mode": "source",
-                "source": true
-              }
-            }
-          }
-        ]
-      },
-      {
-        "id": "5b2ede88ce0de03d",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "e66b0ca7ff228a8d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Seam.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -103,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Seam.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Seam.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Seam.md"
+                "file": "README.md"
               }
             }
           }
@@ -164,32 +146,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8176f1bde55cb540",
+  "active": "3025933ca18dc3c1",
   "lastOpenFiles": [
-    "img.md",
+    "西电相关资料/实验/MapRouting/out/production/MapRouting/usa.txt",
+    "西电相关资料/实验/MapRouting/out/production/MapRouting/MapRouting.class",
+    "西电相关资料/实验/MapRouting/out/production/MapRouting/Main.class",
+    "西电相关资料/实验/MapRouting/out/production/MapRouting/Dijkstra.class",
+    "西电相关资料/实验/MapRouting/out/production/MapRouting",
+    "西电相关资料/实验/MapRouting/src/usa.txt",
+    "西电相关资料/实验/MapRouting/src/MapRouting.java",
+    "西电相关资料/实验/MapRouting/src/Main.java",
+    "西电相关资料/实验/MapRouting/src/Dijkstra.java",
+    "西电相关资料/实验/MapRouting/out/production",
+    "西电相关资料/实验/MapRouting/test.txt",
     "Seam.md",
+    "README.md",
+    "img.md",
     "img/seam100.png",
     "img/022d42a6c289e9f9cff567b13e0f655.png",
     "WordNet.md",
-    "README.md",
     "Queues.md",
-    "SeamCarver.java",
     "KdTree.md",
     "Percolation.md",
     "Collinear.md",
     "8puzzle.md.md",
     "img/logo_7.png",
     "img/logo.png",
-    "wordnet/WordNet.java",
-    "wordnet/SAP.java",
-    "wordnet/Outcast.java",
-    "wordnet",
-    "新建文件夹",
     "img/wordnet100.png",
     "img/logo_6.png",
     "interestingAssignments/assignments.md",
     "Untitled.canvas",
-    "2023-11-08.md",
-    "Untitled"
+    "2023-11-08.md"
   ]
 }
